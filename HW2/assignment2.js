@@ -124,9 +124,7 @@ export class Assignment2 extends Base_Scene {
         this.angle = 0;
     }
 
-    generate_random_color() {
-        return color(Math.random(), Math.random(), Math.random(), 1.0);
-    }
+
 
     set_colors() {
         // TODO:  Create a class member variable to store your cube's colors.
@@ -135,7 +133,7 @@ export class Assignment2 extends Base_Scene {
         // Toggle between colors for the cube or set a new color
         // For this example, let's just toggle between red and blue
         for (let i = 0; i < this.box_colors.length; i++) {
-            this.box_colors[i] = this.generate_random_color();
+            this.box_colors[i] = color(Math.random(), Math.random(), Math.random(), 1.0);
         }   
     }
 
@@ -181,7 +179,8 @@ export class Assignment2 extends Base_Scene {
             model_transform = this.draw_box(context, program_state, model_transform,i);
              if(this.swarm) {
                 this.angle = this.max_angle * Math.abs(Math.sin(program_state.animation_time / 1000));
-                model_transform = model_transform.times(Mat4.rotation(this.angle, 0, 0, 1)).times(Mat4.translation(-0.15, 0, 0)).times(Mat4.translation(0.2, 0, 0));
+                model_transform = model_transform.times(Mat4.translation(-1, 0, 0)).times(Mat4.rotation(this.angle, 0, 0, 1)).times(Mat4.translation(1, 0, 0)).times(Mat4.translation(-0.07, 0, 0));
+                // model_transform = model_transform.times(Mat4.rotation(this.angle, 0, 0, 1)).times(Mat4.translation(-0.07, 0, 0).times(Mat4.rotation(this.angle, 0, 0, 1))).times(Mat4.translation(0.07, 0, 0));
             }
         }
 
