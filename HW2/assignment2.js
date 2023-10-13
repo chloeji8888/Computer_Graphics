@@ -163,14 +163,15 @@ export class Assignment2 extends Base_Scene {
             this.shapes.cube.draw(context, program_state, model_transform, this.materials.plastic.override({color:this.box_colors[i]}));
         }
         
-        return model_transform.times(Mat4.translation(0, 2, 0));
+        model_transform = model_transform.times(Mat4.translation(-1, 1, 0)).times(Mat4.rotation(this.angle, 0, 0, 1)).times(Mat4.translation(1, 1, 0));
+        return model_transform;
     }
 
     display(context, program_state) {
         super.display(context, program_state);
         const blue = hex_color("#1a9ffa");
         let model_transform = Mat4.identity();
-        model_transform = model_transform.times(Mat4.translation(0, 1, 0));
+        model_transform = model_transform.times(Mat4.translation(0, 0, 0));
         if(!this.show_outline){
             this.shapes.cube.draw(context, program_state, model_transform, this.materials.plastic.override({color:blue}));
         }
@@ -179,7 +180,6 @@ export class Assignment2 extends Base_Scene {
             model_transform = this.draw_box(context, program_state, model_transform,i);
              if(this.swarm) {
                 this.angle = this.max_angle * Math.abs(Math.sin(program_state.animation_time / 1000));
-                model_transform = model_transform.times(Mat4.translation(-1, 0, 0)).times(Mat4.rotation(this.angle, 0, 0, 1)).times(Mat4.translation(1, 0, 0)).times(Mat4.translation(-0.07, 0, 0));
                 // model_transform = model_transform.times(Mat4.rotation(this.angle, 0, 0, 1)).times(Mat4.translation(-0.07, 0, 0).times(Mat4.rotation(this.angle, 0, 0, 1))).times(Mat4.translation(0.07, 0, 0));
             }
         }
